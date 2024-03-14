@@ -1,3 +1,5 @@
+<h2>The servers component:</h2>
+<hr />
 <!-- EVENT BINDING -->
 <label>Server name: {{ serverName }}</label>
 <input type="text" class="form-control" (input)="onUpdateServerName($event)" />
@@ -19,11 +21,18 @@
 
 <!-- STRING INTERPOLATION -->
 <p>{{ allowNewServer }}</p>
+
 <!-- PROPERTY BINDING -->
 <p [textContent]="allowNewServer"></p>
 <hr />
-<p>{{ serverCreationStatus }}</p>
+
+<!-- USING NGIF -->
+<p *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</p>
+<ng-template #noServer><p>No server was created</p></ng-template>
+<!-- <p>{{ serverCreationStatus }}</p> -->
 
 <hr />
-<app-server></app-server>
-<!-- <app-server></app-server> -->
+<!-- NG FOR -->
+<app-server *ngFor="let server of servers"></app-server>
+<!-- <app-server></app-server>
+<app-server></app-server> -->

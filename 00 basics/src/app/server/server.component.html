@@ -1,8 +1,17 @@
-<p>The server component:</p>
+<h3>The server component:</h3>
 <p>
   {{
     "String interpolation must have expression that can be converted to string"
-  }}. Server with ID {{ serverID }} is {{ serverStatus }}. Calling method
+  }}.
+</p>
+
+<!-- NG STYLE, NG CLASS -->
+<p
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{ online: serverStatus === 'online' }"
+>
+  Server with ID {{ serverID }} is {{ serverStatus }}. Calling method
   getServerStatus:
   {{ getServerStatus() }}
 </p>
+<hr />
