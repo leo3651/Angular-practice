@@ -1,0 +1,10 @@
+<hr />
+<input type="text" [(ngModel)]="username" />
+<p>{{ username }}</p>
+<button
+  [disabled]="!username"
+  class="btn-primary btn"
+  (click)="onUpdateUsername()"
+>
+  Click
+</button>
