@@ -24,12 +24,4 @@ export class Directives {
     );
     console.log(this.buttonClicks);
   }
-
-  getColor() {
-    return this.buttonClicks.length >= 5 ? 'lightblue' : '';
-  }
-
-  getLength() {
-    return this.buttonClicks.length >= 5 ? true : false;
-  }
 }
