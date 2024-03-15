@@ -1,0 +1,20 @@
+<h2>Directives component:</h2>
+<hr />
+<!-- EVENT BINDING -->
+<button class="btn btn-primary" (click)="onUpdateParagraph()">
+  Display Details
+</button>
+<!-- <button class="btn btn-primary" (click)="showParagraph = !showParagraph">
+  Display Details
+</button> -->
+
+<!-- NG IF -->
+<p *ngIf="showParagraph">My favourite avenger is Iron Man</p>
+
+<p
+  *ngFor="let click of buttonClicks; let i = index"
+  [ngClass]="{ 'white-color': i >= 4 }"
+  [ngStyle]="{ backgroundColor: i >= 4 ? 'lightblue' : 'transparent' }"
+>
+  {{ click }}
+</p>
