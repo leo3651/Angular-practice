@@ -13,6 +13,11 @@ export class RecipeListComponent {
       'This is a test',
       'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2021-11/02_iStock-619087354-_1_0.jpg'
     ),
+    new Recipe(
+      'Test',
+      'This is a test',
+      'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2021-11/02_iStock-619087354-_1_0.jpg'
+    ),
   ];
 
   constructor() {}
