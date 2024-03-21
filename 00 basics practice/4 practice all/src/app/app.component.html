@@ -1,0 +1,10 @@
+<app-warning-alert></app-warning-alert>
+<app-success-alert app-success-alert></app-success-alert>
+
+<input [(ngModel)]="username" />
+<p>{{ username }}</p>
+<p [textContent]="username"></p>
+
+<input (input)="onInputChange($event)" />
+
+<button></button>
