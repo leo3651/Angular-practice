@@ -1,0 +1,12 @@
+button {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+p {
+  padding: 1rem;
+}
+
+.white-color {
+  color: white;
+}

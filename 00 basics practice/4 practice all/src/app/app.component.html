@@ -1,10 +1,32 @@
 <app-warning-alert></app-warning-alert>
 <app-success-alert app-success-alert></app-success-alert>
+<hr />
 
 <input [(ngModel)]="username" />
 <p>{{ username }}</p>
 <p [textContent]="username"></p>
 
 <input (input)="onInputChange($event)" />
+<button [disabled]="!username" (click)="onUpdateUsername()">Button</button>
+<hr />
 
-<button></button>
+<button (click)="onUpdateShowDetails()">Display Details</button>
+<p *ngIf="showDetails; else alternative">Secret password = "Iron Man"</p>
+<ng-template #alternative><p>Click Button to show details</p></ng-template>
+
+<p
+  *ngFor="let click of logClicks; let i = index"
+  [ngStyle]="{ backgroundColor: getColor(i) }"
+  [ngClass]="{ 'white-color': i >= 4 }"
+>
+  {{ click }}
+</p>
+<hr />
+
+<input type="text" />
+<button>Add Server</button>
+<button>Add Blueprint</button>
+
+<p>Server was added with the ID 10 and name Test server</p>
+<p>Blueprint was added with the ID 10 and name Test server</p>
+<!-- <app-server *ngFor="let server of servers" [server]="server"></app-server> -->
