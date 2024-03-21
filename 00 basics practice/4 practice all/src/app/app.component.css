@@ -3,10 +3,11 @@ button {
   margin-top: 0.5rem;
 }
 
-p {
-  padding: 1rem;
-}
-
 .white-color {
   color: white;
+}
+
+.container {
+  max-width: 70%;
+  margin: 0 auto;
 }

@@ -1,1 +1,10 @@
-<p>server works!</p>
+<p
+  [ngStyle]="{
+    backgroundColor: server.type === 'Server' ? 'lightgreen' : 'lightblue'
+  }"
+>
+  {{ server.type }} was added with the ID {{ server.id }}
+  <span *ngIf="server.name">and name {{ server.name }} </span>({{
+    server.status
+  }})
+</p>

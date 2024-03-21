@@ -1,0 +1,13 @@
+<button (click)="onUpdateShowDetails()">Display Details</button>
+<p *ngIf="showDetails; else alternative" class="secret">
+  Secret password = "Iron Man"
+</p>
+<ng-template #alternative><p>Click Button to show details</p></ng-template>
+
+<p
+  *ngFor="let click of logClicks; let i = index"
+  [ngStyle]="{ backgroundColor: getColor(i) }"
+  [ngClass]="{ 'white-color': i >= 4 }"
+>
+  {{ click }}
+</p>
