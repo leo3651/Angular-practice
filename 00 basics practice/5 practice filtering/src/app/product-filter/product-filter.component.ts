@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+
 export interface iMinMaxFilter {
   min: number;
   max: number;
@@ -19,9 +20,13 @@ export class ProductFilterComponent {
     const min = Number.parseFloat(this.min);
     const max = Number.parseFloat(this.max);
 
-    if (Number.isNaN(min) || Number.isNaN(max)) alert('It must be a number');
+    this.min = '';
+    this.max = '';
 
-    if (min >= max) alert('Minimum greater than maximum');
+    if (Number.isNaN(min) || Number.isNaN(max))
+      return alert('Input must be a number');
+
+    if (min >= max) return alert('Maximum must be greater than minimum');
 
     this.minMaxAdded.emit({
       min: min,

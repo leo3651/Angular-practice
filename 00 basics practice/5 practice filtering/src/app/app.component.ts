@@ -14,11 +14,9 @@ export class AppComponent {
   activeFilter?: iMinMaxFilter;
 
   filterProducts(e: iMinMaxFilter) {
-    this.activeFilter = e
-    this.dataList = products.filter((value, i) => {
-      const { price } = value;
-
-      return price >= e.min && price <= e.max;
-    });
+    this.activeFilter = e;
+    this.dataList = products.filter(
+      ({ price }) => price >= e.min && price <= e.max
+    );
   }
 }
