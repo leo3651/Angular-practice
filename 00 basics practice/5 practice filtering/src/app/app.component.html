@@ -1,0 +1,7 @@
+<div>
+  <app-product-filter
+    (minMaxAdded)="filterProducts($event)"
+  ></app-product-filter>
+  <app-product-list [products]="dataList"></app-product-list>
+  <span>{{ activeFilter | filterFormatL }}</span>
+</div>
