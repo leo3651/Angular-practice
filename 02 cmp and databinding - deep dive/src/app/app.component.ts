@@ -28,4 +28,13 @@ export class AppComponent {
       content: serverData.serverContent,
     });
   }
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed';
+  }
+
+  onDestroy() {
+    this.serverElements.shift();
+    console.log('Removed first element of array');
+  }
 }
