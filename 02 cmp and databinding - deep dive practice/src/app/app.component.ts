@@ -6,16 +6,16 @@ import { Component, ViewChild, OnInit } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  even: boolean = false;
+  events: number[] = [];
+
   @ViewChild('gameControl', { static: true }) gameControl;
 
   onStartedGame(event) {
-    console.log(event);
+    this.events.push(this.gameControl.value);
   }
 
   ngOnInit() {
     console.log(this.gameControl);
     console.log(this.gameControl.value);
-    if (this.gameControl.value % 2 === 0) this.even = true;
   }
 }

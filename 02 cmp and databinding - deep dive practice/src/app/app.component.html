@@ -2,5 +2,12 @@
   (startedGame)="onStartedGame($event)"
   #gameControl
 ></app-game-control>
-<app-odd *ngIf="even"></app-odd>
-<app-even></app-even>
+
+<div *ngFor="let event of events">
+  <app-even *ngIf="event % 2 === 0; else odd"
+    >Even number: {{ event }}</app-even
+  >
+  <ng-template #odd
+    ><app-odd>Odd number: {{ event }}</app-odd></ng-template
+  >
+</div>
