@@ -1,0 +1,6 @@
+<app-game-control
+  (startedGame)="onStartedGame($event)"
+  #gameControl
+></app-game-control>
+<app-odd *ngIf="even"></app-odd>
+<app-even></app-even>
