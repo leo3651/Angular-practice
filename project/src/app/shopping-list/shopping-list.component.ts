@@ -12,5 +12,9 @@ export class ShoppingListComponent {
     new Ingredient('blueberries', 125),
   ];
 
+  onIngredientAdded(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
+
   constructor() {}
 }
