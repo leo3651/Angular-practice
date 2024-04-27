@@ -15,7 +15,18 @@
             {{ oddNumber }}
           </li>
         </div>
-        <div *ngIf="!onlyOdd" [ngClass]="{ even: !onlyOdd }">
+        <!-- <div *ngIf="!onlyOdd" [ngClass]="{ even: !onlyOdd }">
+          <li
+            class="list-group-item"
+            *ngFor="let evenNumber of evenNumbers"
+            [ngStyle]="{ fontWeight: evenNumber % 2 === 0 ? '800' : '200' }"
+          >
+            {{ evenNumber }}
+          </li>
+        </div> -->
+
+        <!-- CUSTOM STRUCTURAL DIRECTIVE -->
+        <div *appUnless="onlyOdd">
           <li
             class="list-group-item"
             *ngFor="let evenNumber of evenNumbers"
@@ -25,14 +36,20 @@
           </li>
         </div>
       </ul>
+
+      <!-- STRUCTURAL DIRECTIVES BEHIND THE SCENES -->
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
       <ng-template [ngIf]="!onlyOdd">
         <p>Only even</p>
       </ng-template>
+
+      <!-- CUSTOM DIRECTIVES -->
       <p appBasicHighlight>App basic highlight directive</p>
-      <p appBetterHighlight>App better highlight directive</p>
+      <p [appBetterHighlight]="'green'" [defaultColor]="'lightgreen'">
+        App better highlight directive
+      </p>
     </div>
   </div>
 </div>
