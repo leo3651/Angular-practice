@@ -6,13 +6,21 @@
       </button>
       <br /><br />
       <ul class="list-group">
-        <div *ngIf="onlyOdd">
-          <li class="list-group-item" *ngFor="let oddNumber of oddNumbers">
+        <div *ngIf="onlyOdd" [ngClass]="{ odd: onlyOdd }">
+          <li
+            class="list-group-item"
+            *ngFor="let oddNumber of oddNumbers"
+            [ngStyle]="{ backgroundColor: onlyOdd ? 'lightBlue' : 'red' }"
+          >
             {{ oddNumber }}
           </li>
         </div>
-        <div *ngIf="!onlyOdd">
-          <li class="list-group-item" *ngFor="let evenNumber of evenNumbers">
+        <div *ngIf="!onlyOdd" [ngClass]="{ even: !onlyOdd }">
+          <li
+            class="list-group-item"
+            *ngFor="let evenNumber of evenNumbers"
+            [ngStyle]="{ fontWeight: evenNumber % 2 === 0 ? '800' : '200' }"
+          >
             {{ evenNumber }}
           </li>
         </div>
@@ -23,6 +31,8 @@
       <ng-template [ngIf]="!onlyOdd">
         <p>Only even</p>
       </ng-template>
+      <p appBasicHighlight>App basic highlight directive</p>
+      <p appBetterHighlight>App better highlight directive</p>
     </div>
   </div>
 </div>
