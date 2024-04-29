@@ -6,11 +6,11 @@ import { AccountsService } from '../accounts.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService],
+  //providers: [LoggingService],
 })
 export class AccountComponent {
   constructor(
-    private loggingService: LoggingService,
+    //private loggingService: LoggingService,
     private accountsService: AccountsService
   ) {}
 
@@ -19,6 +19,7 @@ export class AccountComponent {
 
   onSetTo(status: string) {
     this.accountsService.updateStatus(this.id, status);
-    this.loggingService.loggingStatusChange(status);
+    //this.loggingService.loggingStatusChange(status);
+    this.accountsService.statusUpdated.emit(status);
   }
 }
