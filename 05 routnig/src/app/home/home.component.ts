@@ -15,4 +15,11 @@ export class HomeComponent implements OnInit {
     console.log('Najs');
     this.router.navigate(['/servers']); // routing programmatically
   }
+
+  onLoadServer1(id: number) {
+    this.router.navigate(['servers', id, 'edit'], {
+      queryParams: { allowedEdit: 1 },
+      fragment: 'loaded',
+    });
+  }
 }
