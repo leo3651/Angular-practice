@@ -22,7 +22,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
     this.paramsSubscription = this.activatedRoute.params.subscribe(
       (params: Params) => {
-        console.log('Params:');
+        console.log('Params: ');
         this.user.id = params.id;
         this.user.name = params.name;
         console.log(params);

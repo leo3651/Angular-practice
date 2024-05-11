@@ -5,7 +5,7 @@
         href="#"
         class="list-group-item"
         *ngFor="let server of servers"
-        [routerLink]="['/servers', 5, 'edit']"
+        [routerLink]="['/servers', server.id]"
         [queryParams]="{ allowedEdit: '1', authorized: 'true' }"
         fragment="loaded"
       >
@@ -14,9 +14,13 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <button class="btn btn-primary" (click)="onReload()">Reload page</button>
-    <app-edit-server></app-edit-server>
+    <router-outlet></router-outlet>
+    <button class="btn btn-primary" (click)="onReload()" disabled>
+      Navigate to
+    </button>
+
+    <!-- <app-edit-server></app-edit-server>
     <hr />
-    <app-server></app-server>
+    <app-server></app-server> -->
   </div>
 </div>

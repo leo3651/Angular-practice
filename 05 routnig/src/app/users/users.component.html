@@ -2,12 +2,19 @@
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a routerLink="/servers">Reload page</a>
-      <a href="#" class="list-group-item" *ngFor="let user of users">
+      <a
+        href="#"
+        class="list-group-item"
+        *ngFor="let user of users"
+        [routerLink]="['/users', user.id, user.name]"
+      >
         {{ user.name }}
       </a>
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-user></app-user>
+    <router-outlet></router-outlet>
+    <!-- INSTEAD OF COMP <router-outlet> -->
+    <!-- <app-user></app-user> -->
   </div>
 </div>
