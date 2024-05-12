@@ -37,6 +37,9 @@ export class ServerComponent implements OnInit {
   onEdit() {
     const id = this.activatedRoute.snapshot.params.id;
     console.log(id);
-    this.router.navigate(['edit'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['edit'], {
+      relativeTo: this.activatedRoute,
+      queryParamsHandling: 'preserve',
+    });
   }
 }
