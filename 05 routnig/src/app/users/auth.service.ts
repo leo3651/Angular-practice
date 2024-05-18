@@ -1,5 +1,5 @@
 export class AuthService {
-  loggedIn: boolean = false;
+  private loggedIn: boolean = false;
 
   isAuthenticated() {
     return new Promise((resolve, reject) => {

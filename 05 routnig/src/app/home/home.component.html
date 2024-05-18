@@ -1,6 +1,15 @@
 <h4>Welcome to Server Manager 4.0</h4>
 <p>Manage your Servers and Users.</p>
 <div>
+  <button
+    class="btn btn-default"
+    (click)="onLogin()"
+    style="margin-right: 10px"
+  >
+    Log in
+  </button>
+  <button class="btn btn-default" (click)="onLogout()">Log out</button>
+  <hr />
   <button (click)="onLoadServers()" class="btn btn-primary">
     Load servers!
   </button>
