@@ -5,12 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'courseProject';
-  selectedFeature: string = 'recipes';
-
-  navigateTo(selectedFeature: string) {
-    console.log(selectedFeature);
-    this.selectedFeature = selectedFeature;
-  }
-}
+export class AppComponent {}
