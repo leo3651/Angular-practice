@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipes',
@@ -9,19 +10,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './recipes.component.css',
   providers: [RecipeService],
 })
-export class RecipesComponent implements OnInit {
+export class RecipesComponent implements OnInit, OnDestroy {
+  recipeDetail: Recipe;
+  showRecipe: boolean = false;
+  //recipeSelectedSubs: Subscription;
+
   constructor(
     private recipeService: RecipeService,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  recipeDetail: Recipe;
-  showRecipe: boolean = false;
-
   ngOnInit(): void {
-    /*this.recipeService.recipeSelected.subscribe((recipe) => {
+    /*this.recipeSelectedSubs = this.recipeService.recipeSelected.subscribe((recipe) => {
       this.recipeDetail = recipe;
       this.showRecipe = true;
     });*/
+  }
+
+  ngOnDestroy(): void {
+    //this.recipeSelectedSubs.unsubscribe()
   }
 }

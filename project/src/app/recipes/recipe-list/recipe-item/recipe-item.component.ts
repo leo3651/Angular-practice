@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
 import { RecipeService } from '../../recipe.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-item',
