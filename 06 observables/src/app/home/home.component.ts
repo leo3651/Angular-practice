@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.customObsSubscription = customObservable
       .pipe(
-        filter((data: number) => data > 0),
+        filter((data: number) => data > 1),
         map((data: number) => 'Round: ' + data)
       )
       .subscribe(
