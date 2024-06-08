@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModelGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,11 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   @ViewChild('form') formElement: HTMLFormElement;
   @ViewChild('email') emailInputElement: HTMLFormElement;
+  @ViewChild('userData') userData: NgModelGroup;
 
   defaultQuestion: string = 'pet';
   answer: string = '';
+  genders: string[] = ['male', 'female'];
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -22,6 +24,7 @@ export class AppComponent {
     console.log('Form element, native element', this.formElement.nativeElement);
     console.log('Email input element: ', this.emailInputElement);
     console.log('Event on submit: ', event);
+    console.log('userData: ', this.userData);
     console.log('Submitted');
   }
 }

@@ -6,3 +6,8 @@ input.ng-invalid.ng-touched {
   border-bottom: 1px solid red;
   border-radius: 3px;
 }
+
+.radio input[type="radio"] {
+  margin-left: 0;
+  position: relative;
+}
