@@ -29,10 +29,29 @@ export class AppComponent implements OnInit {
       gender: new FormControl('male'),
       hobbies: new FormArray([]),
     });
+
+    this.form.valueChanges.subscribe((changes) => {
+      console.log(changes);
+    });
+
+    this.form
+      .get('userData.email')
+      .statusChanges.subscribe((status) => console.log(status));
+
+    this.form.setValue({
+      userData: { username: 'LEO', email: 'leo.kov@gmail.com' },
+      gender: 'male',
+      hobbies: [],
+    });
+
+    this.form.patchValue({
+      userData: { username: 'Leo', email: 'leo.kovac@gmail.com' },
+    });
   }
 
   submitForm() {
     console.log(this.form);
+    this.form.reset();
   }
 
   addHobby() {
@@ -41,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   get hobbiesControls() {
-    console.log((<FormArray>this.form.get('hobbies')).controls);
+    //console.log((<FormArray>this.form.get('hobbies')).controls);
     return (<FormArray>this.form.get('hobbies')).controls;
   }
 

@@ -47,12 +47,7 @@
               form.get('userData.email').touched
             "
           >
-            <span *ngIf="form.get('userData.email').errors.email"
-              >Please enter a valid email</span
-            >
-            <span *ngIf="form.get('userData.email').errors.forbiddenMail"
-              >Email is forbidden</span
-            >
+            <span>Please enter a valid email!</span>
           </p>
         </div>
 
