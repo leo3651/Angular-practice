@@ -1,25 +1,62 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form [formGroup]="form">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            class="form-control"
-            formControlName="username"
-          />
+      <!--  FORM -->
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div formGroupName="userData">
+          <!-- USERNAME -->
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              formControlName="username"
+            />
+          </div>
+          <p
+            class="help-block"
+            *ngIf="
+              !form.get('userData.username').valid &&
+              form.get('userData.username').touched
+            "
+          >
+            <span *ngIf="form.get('userData.username').errors.required"
+              >This field is required</span
+            >
+            <span *ngIf="form.get('userData.username').errors.forbiddenName"
+              >This username is forbidden</span
+            >
+          </p>
+
+          <!-- EMAIL -->
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              autocomplete="off"
+            />
+          </div>
+          <p
+            class="help-block"
+            *ngIf="
+              !form.get('userData.email').valid &&
+              form.get('userData.email').touched
+            "
+          >
+            <span *ngIf="form.get('userData.email').errors.email"
+              >Please enter a valid email</span
+            >
+            <span *ngIf="form.get('userData.email').errors.forbiddenMail"
+              >Email is forbidden</span
+            >
+          </p>
         </div>
-        <div class="form-group">
-          <label for="email">email</label>
-          <input
-            type="text"
-            id="email"
-            class="form-control"
-            formControlName="email"
-          />
-        </div>
+
+        <!-- RADIO BUTTONS -->
         <div class="radio" *ngFor="let gender of genders">
           <label>
             <input type="radio" [value]="gender" formControlName="gender" />{{
@@ -27,8 +64,33 @@
             }}
           </label>
         </div>
+
+        <!-- ADD HOBBIES -->
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <button
+            style="margin-bottom: 10px"
+            class="btn btn-default"
+            type="button"
+            (click)="addHobby()"
+          >
+            Add Hobby
+          </button>
+          <div
+            class="form-group"
+            *ngFor="let hobby of hobbiesControls; let i = index"
+          >
+            <input type="text" [formControlName]="i" />
+          </div>
+        </div>
+
+        <hr />
+
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
+      <p class="help-block" *ngIf="!form.valid && form.touched">
+        Form is not valid
+      </p>
     </div>
   </div>
 </div>
