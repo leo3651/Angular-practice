@@ -8,7 +8,6 @@ import { Subject } from 'rxjs';
 export class RecipeService {
   constructor(private shoppingListService: ShoppingListService) {}
 
-  //recipeSelected: EventEmitter<Recipe> = new EventEmitter<Recipe>();
   recipeSelected: Subject<Recipe> = new Subject<Recipe>();
 
   private recipes: Recipe[] = [
