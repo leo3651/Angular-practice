@@ -9,6 +9,7 @@ export class RecipeService {
   constructor(private shoppingListService: ShoppingListService) {}
 
   recipeSelected: Subject<Recipe> = new Subject<Recipe>();
+  recipesChanged = new Subject();
 
   private recipes: Recipe[] = [
     new Recipe(
@@ -37,5 +38,16 @@ export class RecipeService {
 
   onAddIngredients(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(recipeId: number, newRecipe: Recipe) {
+    const index = this.recipes.findIndex((recipe) => recipe.id === recipeId);
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
   }
 }
