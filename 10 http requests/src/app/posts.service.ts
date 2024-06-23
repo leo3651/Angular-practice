@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPost } from './post.model';
-import { map } from 'rxjs';
+import { Subject, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
+  error: Subject<string> = new Subject();
+
   constructor(private http: HttpClient) {}
   createAndStorePosts(title: string, content: string) {
     const postData: IPost = { title, content };
@@ -13,9 +15,12 @@ export class PostService {
         'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         postData
       )
-      .subscribe((responseData) => {
-        console.log(responseData);
-      });
+      .subscribe(
+        (responseData) => {
+          console.log(responseData);
+        },
+        (error) => this.error.next('POST: ' + error.message)
+      );
   }
 
   fetchPosts() {
