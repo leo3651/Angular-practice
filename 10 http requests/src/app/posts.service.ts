@@ -1,7 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEventType,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPost } from './post.model';
-import { Subject, catchError, map, throwError } from 'rxjs';
+import { Subject, catchError, map, tap, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -13,7 +18,8 @@ export class PostService {
     this.http
       .post<{ name: string }>(
         'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
-        postData
+        postData,
+        { observe: 'response' }
       )
       .subscribe(
         (responseData) => {
@@ -24,9 +30,17 @@ export class PostService {
   }
 
   fetchPosts() {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('print', 'pretty');
+    searchParams = searchParams.append('custom', 'key');
+
     return this.http
       .get<{ [key: string]: IPost }>(
-        'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
+        'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
+        {
+          headers: new HttpHeaders({ 'Custom-header': 'Hello' }),
+          params: searchParams,
+        }
       )
       .pipe(
         map((response) => {
@@ -38,14 +52,28 @@ export class PostService {
           return postsArray;
         }),
         catchError((err) => {
+          console.log('CATCH ERROR: ', err);
           return throwError(err);
         })
       );
   }
 
   deleteAllPosts() {
-    return this.http.delete(
-      'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
-    );
+    return this.http
+      .delete(
+        'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
+        { observe: 'events' }
+      )
+      .pipe(
+        tap((event) => {
+          console.log(event);
+          if (event.type === HttpEventType.Sent) {
+            // ...
+          }
+          if (event.type === HttpEventType.Response) {
+            console.log(event.body);
+          }
+        })
+      );
   }
 }

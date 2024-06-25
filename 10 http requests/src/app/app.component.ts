@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onClearPosts() {
     this.postService.deleteAllPosts().subscribe((response) => {
-      console.log(response);
+      //console.log(response);
       this.loadedPosts = [];
     });
   }
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isFetching = false;
       },
       (error) => {
-        console.log(error);
+        console.log('SUBSCRIBE ERROR: ', error);
         this.error = 'GET: ' + error.message;
         this.isFetching = false;
       }
