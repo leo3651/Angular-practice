@@ -19,7 +19,7 @@ export class PostService {
       .post<{ name: string }>(
         'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         postData,
-        { observe: 'response' }
+        { observe: 'response', responseType: 'json' }
       )
       .subscribe(
         (responseData) => {
@@ -62,7 +62,7 @@ export class PostService {
     return this.http
       .delete(
         'https://lithe-lens-248116-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
-        { observe: 'events' }
+        { observe: 'events', responseType: 'text' }
       )
       .pipe(
         tap((event) => {
