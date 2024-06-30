@@ -58,4 +58,9 @@ export class RecipeService {
     );
     this.recipesChanged.next(this.recipes.slice());
   }
+
+  getReciepsFromDatabase(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 }
