@@ -11,7 +11,7 @@ export class RecipeService {
   recipeSelected: Subject<Recipe> = new Subject<Recipe>();
   recipesChanged = new Subject();
 
-  private recipes: Recipe[] = [
+  /*private recipes: Recipe[] = [
     new Recipe(
       1,
       'Test 1',
@@ -26,7 +26,8 @@ export class RecipeService {
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       [new Ingredient('bananna', 4), new Ingredient('cherry', 4)]
     ),
-  ];
+  ];*/
+  private recipes: Recipe[] = [];
 
   getRecipes() {
     return this.recipes.slice();
