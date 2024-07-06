@@ -1,6 +1,8 @@
 .lds-facebook {
   /* change color here */
   color: #1c4c5b;
+  height: 100%;
+  width: 100%;
 }
 .lds-facebook,
 .lds-facebook div {

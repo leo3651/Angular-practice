@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
         <label for="email">E-Mail</label>
         <input
@@ -12,6 +12,7 @@
           required
           email
           #email="ngModel"
+          autocomplete="off"
         />
       </div>
 
@@ -42,5 +43,21 @@
         </button>
       </div>
     </form>
+
+    <div
+      *ngIf="isLoading"
+      class="loading-spinner-container"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <hr />
+
+    <div class="alert alert-danger" *ngIf="error">
+      <p>
+        {{ error }}
+      </p>
+    </div>
   </div>
 </div>
