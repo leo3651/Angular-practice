@@ -13,8 +13,8 @@ export class DropdownDirective {
   @HostBinding('class.open') isOpen: boolean = false;
 
   @HostListener('document:click', ['$event']) toggleDropdown(event: Event) {
-    console.log('event.target: ', event.target);
-    console.log('elementRef: ', this.elementRef.nativeElement);
+    //console.log('event.target: ', event.target);
+    //console.log('elementRef: ', this.elementRef.nativeElement);
     this.isOpen = this.elementRef.nativeElement.contains(event.target)
       ? !this.isOpen
       : false;
