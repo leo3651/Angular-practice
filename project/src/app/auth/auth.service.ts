@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   idToken: string;
@@ -17,8 +18,9 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user: BehaviorSubject<User> = new BehaviorSubject(null);
+  private autoLogoutTimer: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     const body = { email, password, returnSecureToken: true };
@@ -58,6 +60,49 @@ export class AuthService {
           );
         })
       );
+  }
+
+  autoLogin() {
+    const loadedUser: {
+      email: string;
+      localId: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if (!loadedUser) {
+      return;
+    }
+
+    const expiresIn = new Date(loadedUser._tokenExpirationDate);
+    const user = new User(
+      loadedUser.email,
+      loadedUser.localId,
+      loadedUser._token,
+      expiresIn
+    );
+
+    if (user.token) {
+      this.user.next(user);
+      this.autoLogout(expiresIn.getTime() - Date.now());
+    }
+  }
+
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
+    if (this.autoLogoutTimer) {
+      clearTimeout(this.autoLogoutTimer);
+    }
+    this.autoLogoutTimer = null;
+  }
+
+  autoLogout(expirationDuration: number) {
+    console.log(`Expires in ${expirationDuration / 60000} minutes`);
+    this.autoLogoutTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
@@ -105,6 +150,8 @@ export class AuthService {
   ) {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, localId, idToken, expirationDate);
+    this.autoLogout(+expiresIn * 1000);
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 }
