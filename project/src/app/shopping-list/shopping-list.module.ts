@@ -5,9 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-const shoppingListRoutes = [
-  { path: 'shopping-list', component: ShoppingListComponent },
-];
+const shoppingListRoutes = [{ path: '', component: ShoppingListComponent }];
 
 @NgModule({
   declarations: [ShoppingListComponent, ShoppingEditComponent],
